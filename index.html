@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDD & Diagramme d'Évolution - Projet Botanique</title>
-    <!-- Chargement de la bibliothèque Mermaid.js officielle via CDN -->
+    <title>GDD & Structure des Niveaux - Projet Botanique</title>
+    
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ 
             startOnLoad: true,
             theme: 'base',
             themeVariables: {
-                fontFamily: 'Arial, sans-serif',
+                fontFamily: 'Segoe UI, Arial, sans-serif',
                 primaryColor: '#E8F5E9',
                 primaryTextColor: '#1B5E20',
                 lineColor: '#81C784'
             }
         });
     </script>
+    
     <style>
         :root {
             --primary: #1B5E20;
@@ -26,13 +27,11 @@
             --dark: #2C3E50;
             --text: #333333;
             --bg: #ffffff;
+            --false-color: #7f8c8d;
+            --true-color: #2ecc71;
         }
         
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -43,7 +42,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: var(--bg);
             padding: 40px;
@@ -69,25 +68,6 @@
             margin-bottom: 40px;
         }
 
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            background: var(--primary-light);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            border-left: 5px solid var(--primary);
-        }
-
-        .meta-item strong {
-            display: block;
-            color: var(--primary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         h2 {
             color: var(--dark);
             border-bottom: 2px solid var(--accent);
@@ -96,21 +76,27 @@
             font-size: 1.6rem;
         }
 
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
+        p { margin-bottom: 15px; text-align: justify; }
+
+        .definition-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
         }
 
-        ul, ol {
-            margin-bottom: 20px;
-            padding-left: 25px;
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
         }
+        .badge-true { background-color: var(--true-color); }
+        .badge-false { background-color: var(--false-color); }
 
-        li {
-            margin-bottom: 8px;
-        }
-
-        /* Container spécifique pour le diagramme Mermaid */
         .diagram-container {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -118,13 +104,9 @@
             padding: 20px;
             margin: 30px 0;
             overflow-x: auto;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.02);
         }
 
-        .mermaid {
-            display: flex;
-            justify-content: center;
-        }
+        .mermaid { display: flex; justify-content: center; }
 
         table {
             width: 100%;
@@ -138,25 +120,27 @@
             padding: 12px;
             text-align: left;
             font-size: 0.95rem;
+            position: sticky;
+            top: 0;
         }
 
         td {
-            padding: 12px;
+            padding: 10px 12px;
             border-bottom: 1px solid #e2e8f0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
-        tr:nth-child(even) {
-            background-color: #fcfdfc;
-        }
+        tr:nth-child(even) { background-color: #fdfefe; }
+        
+        .row-true { background-color: #f2fbf5 !important; font-weight: 500; }
 
         .color-preview {
             display: inline-block;
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             margin-right: 6px;
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.15);
             vertical-align: middle;
         }
 
@@ -174,114 +158,115 @@
 
     <div class="container">
         <h1>Document de Conception Générale</h1>
-        <div class="subtitle">Projet Évolution Plante & Casse-Têtes</div>
+        <div class="subtitle">Projet Évolution Plante & Casse-Têtes — Version Complète</div>
 
-        <div class="meta-grid">
-            <div class="meta-item">
-                <strong>Nom de code</strong>
-                Projet Botanique
-            </div>
-            <div class="meta-item">
-                <strong>Plateformes</strong>
-                Multiplateforme (Mobile & PC)
-            </div>
-            <div class="meta-item">
-                <strong>Style Visuel</strong>
-                Pixel Art 2D
-            </div>
+        <h2>1. Logique des Niveaux (Signification de Spécial ? TRUE / FALSE)</h2>
+        <p>Le système de progression s'appuie directement sur les variables définies dans la base de données pour rythmer le gameplay de manière procédurale :</p>
+        
+        <div class="definition-box">
+            <p><strong><span class="badge badge-true">TRUE</span> — Niveaux Spéciaux d'Évolution (Paliers Botaniques) :</strong><br>
+            Ces niveaux marquent des étapes majeures de croissance de la plante. Lorsqu'un niveau est étiqueté <code>TRUE</code>, sa résolution déclenche une métamorphose graphique immédiate (changement de sprite en Pixel Art), change le rôle de la plante dans le Lore, et débloque une nouvelle structure visuelle sur l'arbre de sélection.</p>
+            
+            <p style="margin-top: 15px;"><strong><span class="badge badge-false">FALSE</span> — Niveaux Réguliers de Nutrition :</strong><br>
+            Ces niveaux sont des énigmes de transition standards. Ils ne modifient pas l'apparence physique de la plante. Leur objectif principal est de distribuer des points de sève et de nutriments pour alimenter le sol et préparer le prochain palier d'évolution majeure.</p>
         </div>
 
-        <h2>1. Concept et Vision Globale</h2>
-        <p>Le projet est un jeu de réflexion en 2D hybride fusionnant des mécaniques de casse-têtes traditionnels éprouvés (styles Sudoku, Block Master) avec une progression thématique forte basée sur la botanique et l'évolution dynamique d'une plante. Le but ultime du joueur est de résoudre des énigmes logiques pour faire grandir une entité végétale unique, depuis son état de graine invisible jusqu'à un arbre majestueux et sacré.</p>
-
-        <h2>2. Diagramme d'Évolution des Niveaux</h2>
-        <p>Voici la représentation visuelle et structurelle de la progression de la plante générée de manière native et dynamique :</p>
-        
-        <!-- Le diagramme Mermaid est injecté de manière sécurisée sans aucun parsing JSON externe -->
+        <h2>2. Diagramme des Paliers Majeurs (TRUE)</h2>
         <div class="diagram-container">
             <div class="mermaid">
                 graph TD
-                    subgraph ZONE_SOUTERRAINE ["🌍 ZONE SOUTERRAINE (Niv. 1-3)"]
-                        A[Graine Dormante] -->|Niveau TRUE| B(Racine Ancrée)
+                    subgraph SOUTERRAIN ["🌍 Souterrain"]
+                        N1[Niv. 1: Graine dormante] --> N2(Niv. 2: Graine en éveil)
+                        N2 --> N3(Niv. 3: Racine ancrée)
+                    end
+                    subgraph CROISSANCE ["🌱 Croissance"]
+                        N3 --> N5{Niv. 5: Jeune pousse}
+                        N5 --> N7[Niv. 7: Pousse vigoureuse]
+                        N7 --> N9[Niv. 9: Feuillage naissant]
+                        N9 --> N12[Niv. 12: Tige robuste]
+                        N12 --> N15[Niv. 15: Ramification]
+                        N15 --> N18[Niv. 18: Structure solide]
+                    end
+                    subgraph FLORAISON ["🌸 Floraison & Fruits"]
+                        N18 --> N22[Niv. 22: Bourgeon éclos]
+                        N22 --> N25[Niv. 25: Première fleur]
+                        N25 --> N30[Niv. 30: Fleur épanouie]
+                        N30 --> N35[Niv. 35: Apparition du fruit]
+                        N35 --> N40[Niv. 40: Fruits mûrs]
+                    end
+                    subgraph FINAL ["👑 Apothéose"]
+                        N40 --> N50[Niv. 50: ARBRE SACRÉ]
                     end
 
-                    subgraph ZONE_CROISSANCE ["🌱 ZONE DE CROISSANCE (Niv. 5-18)"]
-                        B -->|Émergence| C{Jeune Pousse}
-                        C --> D[Tige Robuste]
-                        D -->|Niveau TRUE| E[Ramification]
-                    end
-
-                    subgraph ZONE_FLORAISON ["🌸 FLORAISON & FRUCTIFICATION (Niv. 22-40)"]
-                        E --> F[Bourgeon Éclos]
-                        F --> G((Fruits Mûrs))
-                    end
-
-                    subgraph PALIER_FINAL ["👑 APOTHÉOSE (Niv. 50)"]
-                        G -->|Métamorphose Ultime| H[ARBRE SACRÉ]
-                    end
-
-                    style A fill:#A8A8A8,stroke:#707070,color:#000
-                    style B fill:#A5D6A7,stroke:#2E7D32,color:#1B5E20
-                    style C fill:#81C784,stroke:#2E7D32,color:#fff
-                    style D fill:#4CAF50,stroke:#1B5E20,color:#fff
-                    style E fill:#1B5E20,stroke:#0B3A0D,color:#fff
-                    style F fill:#F8BBD0,stroke:#C2185B,color:#880E4F
-                    style G fill:#EF5350,stroke:#B71C1C,color:#fff
-                    style H fill:#795548,stroke:#3E2723,color:#fff
-
-                    style ZONE_SOUTERRAINE fill:#f9f9f9,stroke:#e0E0e0,color:#666
-                    style ZONE_CROISSANCE fill:#E8F5E9,stroke:#C8E6C9,color:#2E7D32
-                    style ZONE_FLORAISON fill:#FCE4EC,stroke:#F8BBD0,color:#C2185B
-                    style PALIER_FINAL fill:#EFEBE9,stroke:#D7CCC8,color:#5D4037
+                    style N1 fill:#A8A8A8,color:#000
+                    style N2 fill:#C8E6C9,color:#1B5E20
+                    style N3 fill:#A5D6A7,color:#1B5E20
+                    style N5 fill:#81C784,color:#fff
+                    style N7 fill:#66BB6A,color:#fff
+                    style N9 fill:#4CAF50,color:#fff
+                    style N12 fill:#388E3C,color:#fff
+                    style N15 fill:#2E7D32,color:#fff
+                    style N18 fill:#1B5E20,color:#fff
+                    style N22 fill:#F8BBD0,color:#000
+                    style N25 fill:#F48FB1,color:#fff
+                    style N30 fill:#F06292,color:#fff
+                    style N35 fill:#FF8A80,color:#fff
+                    style N40 fill:#EF5350,color:#fff
+                    style N50 fill:#795548,color:#fff
             </div>
         </div>
 
-        <h2>3. Structure de la Progression (Paliers Clés)</h2>
+        <h2>3. Base de Données Intégrale des 50 Niveaux</h2>
+        <p>Voici la liste exhaustive répertoriée dans le cahier des charges de l'application :</p>
+        
         <table>
             <thead>
                 <tr>
-                    <th>Paliers & Niveaux</th>
-                    <th>Couleurs</th>
-                    <th>Description Botanique & Gameplay</th>
+                    <th>Niveau</th>
+                    <th>Type (Spécial ?)</th>
+                    <th>Rôle / Stade de Développement</th>
+                    <th>Couleur de la Sève (Hex)</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><strong>Paliers Souterrains</strong><br>Niv. 1 à 3</td>
-                    <td>
-                        <span class="color-preview" style="background-color: #A8A8A8;"></span>#A8A8A8<br>
-                        <span class="color-preview" style="background-color: #A5D6A7;"></span>#A5D6A7
-                    </td>
-                    <td>Début sous terre avec la Graine dormante et la Racine ancrée. Les points lumineux sont enfouis dans le sol.</td>
-                </tr>
-                <tr>
-                    <td><strong>Paliers de Croissance</strong><br>Niv. 5 à 18</td>
-                    <td>
-                        <span class="color-preview" style="background-color: #81C784;"></span>#81C784<br>
-                        <span class="color-preview" style="background-color: #1B5E20;"></span>#1B5E20
-                    </td>
-                    <td>La plante sort de terre (Jeune pousse), se renforce (Tige robuste) et se sépare (Ramification).</td>
-                </tr>
-                <tr>
-                    <td><strong>Paliers de Floraison</strong><br>Niv. 22 à 40</td>
-                    <td>
-                        <span class="color-preview" style="background-color: #F8BBD0;"></span>#F8BBD0<br>
-                        <span class="color-preview" style="background-color: #EF5350;"></span>#EF5350
-                    </td>
-                    <td>Explosion de couleurs. Les points se placent sur le Bourgeon éclos et les Fruits mûrs.</td>
-                </tr>
-                <tr>
-                    <td><strong>Palier Final</strong><br>Niveau 50</td>
-                    <td>
-                        <span class="color-preview" style="background-color: #795548;"></span>#795548
-                    </td>
-                    <td>L'apothéose avec l'Arbre sacré, une structure pixel art monumentale.</td>
-                </tr>
+                <tr class="row-true"><td>Niv. 1</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Graine dormante</td><td><span class="color-preview" style="background-color:#A8A8A8;"></span>#A8A8A8</td></tr>
+                <tr class="row-true"><td>Niv. 2</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Graine en éveil</td><td><span class="color-preview" style="background-color:#C8E6C9;"></span>#C8E6C9</td></tr>
+                <tr class="row-true"><td>Niv. 3</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Racine ancrée</td><td><span class="color-preview" style="background-color:#A5D6A7;"></span>#A5D6A7</td></tr>
+                <tr><td>Niv. 4</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                
+                <tr class="row-true"><td>Niv. 5</td><td><span class="badge badge-true">TRUE</span></td><td>🌿 • Jeune pousse</td><td><span class="color-preview" style="background-color:#81C784;"></span>#81C784</td></tr>
+                <tr><td>Niv. 6</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 7</td><td><span class="badge badge-true">TRUE</span></td><td>🌿 • Pousse vigoureuse</td><td><span class="color-preview" style="background-color:#66BB6A;"></span>#66BB6A</td></tr>
+                <tr><td>Niv. 8</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 9</td><td><span class="badge badge-true">TRUE</span></td><td>🌿 • Feuillage naissant</td><td><span class="color-preview" style="background-color:#4CAF50;"></span>#4CAF50</td></tr>
+                <tr><td>Niv. 10</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr><td>Niv. 11</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 12</td><td><span class="badge badge-true">TRUE</span></td><td>🎋 • Tige robuste</td><td><span class="color-preview" style="background-color:#388E3C;"></span>#388E3C</td></tr>
+                <tr><td>Niv. 13</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr><td>Niv. 14</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 15</td><td><span class="badge badge-true">TRUE</span></td><td>🎋 • Ramification</td><td><span class="color-preview" style="background-color:#2E7D32;"></span>#2E7D32</td></tr>
+                <tr><td>Niv. 16</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr><td>Niv. 17</td><td><span class="badge badge-false">FALSE</span></td><td>Niveau de Nutrition standard</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 18</td><td><span class="badge badge-true">TRUE</span></td><td>🎋 • Structure solide</td><td><span class="color-preview" style="background-color:#1B5E20;"></span>#1B5E20</td></tr>
+                <tr><td>Niv. 19 à 21</td><td><span class="badge badge-false">FALSE</span></td><td>Niveaux de Nutrition standards</td><td>-</td></tr>
+
+                <tr class="row-true"><td>Niv. 22</td><td><span class="badge badge-true">TRUE</span></td><td>🌸 • Bourgeon éclos</td><td><span class="color-preview" style="background-color:#F8BBD0;"></span>#F8BBD0</td></tr>
+                <tr><td>Niv. 23 à 24</td><td><span class="badge badge-false">FALSE</span></td><td>Niveaux de Nutrition standards</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 25</td><td><span class="badge badge-true">TRUE</span></td><td>🌸 • Première fleur</td><td><span class="color-preview" style="background-color:#F48FB1;"></span>#F48FB1</td></tr>
+                <tr><td>Niv. 26 à 29</td><td><span class="badge badge-false">FALSE</span></td><td>Niveaux de Nutrition standards</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 30</td><td><span class="badge badge-true">TRUE</span></td><td>🌸 • Fleur épanouie</td><td><span class="color-preview" style="background-color:#F06292;"></span>#F06292</td></tr>
+                <tr><td>Niv. 31 à 34</td><td><span class="badge badge-false">FALSE</span></td><td>Niveaux de Nutrition standards</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 35</td><td><span class="badge badge-true">TRUE</span></td><td>🍎 • Apparition du fruit</td><td><span class="color-preview" style="background-color:#FF8A80;"></span>#FF8A80</td></tr>
+                <tr><td>Niv. 36 à 39</td><td><span class="badge badge-false">FALSE</span></td><td>Niveaux de Nutrition standards</td><td>-</td></tr>
+                <tr class="row-true"><td>Niv. 40</td><td><span class="badge badge-true">TRUE</span></td><td>🍎 • Fruits mûrs</td><td><span class="color-preview" style="background-color:#EF5350;"></span>#EF5350</td></tr>
+                <tr><td>Niv. 41 à 49</td><td><span class="badge badge-false">FALSE</span></td><td>Niveaux de Nutrition standards</td><td>-</td></tr>
+                
+                <tr class="row-true"><td>Niv. 50</td><td><span class="badge badge-true">TRUE</span></td><td>👑 • ARBRE SACRÉ</td><td><span class="color-preview" style="background-color:#795548;"></span>#795548</td></tr>
             </tbody>
         </table>
 
         <footer>
-            Document Généré pour GitHub Pages — Projet Botanique &copy; 2026
+            Document Intégral Spécification Système — Projet Botanique &copy; 2026
         </footer>
     </div>
 
