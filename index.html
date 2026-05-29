@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDD & Diagramme d'Évolution - Projet Botanique</title>
+    <!-- Chargement de la bibliothèque Mermaid.js officielle via CDN -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Arial, sans-serif',
+                primaryColor: '#E8F5E9',
+                primaryTextColor: '#1B5E20',
+                lineColor: '#81C784'
+            }
+        });
+    </script>
+    <style>
+        :root {
+            --primary: #1B5E20;
+            --primary-light: #E8F5E9;
+            --accent: #81C784;
+            --dark: #2C3E50;
+            --text: #333333;
+            --bg: #ffffff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #fcfdfc;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e8f0e8;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            background: var(--primary-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: var(--dark);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+            margin: 40px 0 20px 0;
+            font-size: 1.6rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Container spécifique pour le diagramme Mermaid */
+        .diagram-container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fcfdfc;
+        }
+
+        .color-preview {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+            border: 1px solid rgba(0,0,0,0.1);
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Document de Conception Générale</h1>
+        <div class="subtitle">Projet Évolution Plante & Casse-Têtes</div>
+
+        <div class="meta-grid">
+            <div class="meta-item">
+                <strong>Nom de code</strong>
+                Projet Botanique
+            </div>
+            <div class="meta-item">
+                <strong>Plateformes</strong>
+                Multiplateforme (Mobile & PC)
+            </div>
+            <div class="meta-item">
+                <strong>Style Visuel</strong>
+                Pixel Art 2D
+            </div>
+        </div>
+
+        <h2>1. Concept et Vision Globale</h2>
+        <p>Le projet est un jeu de réflexion en 2D hybride fusionnant des mécaniques de casse-têtes traditionnels éprouvés (styles Sudoku, Block Master) avec une progression thématique forte basée sur la botanique et l'évolution dynamique d'une plante. Le but ultime du joueur est de résoudre des énigmes logiques pour faire grandir une entité végétale unique, depuis son état de graine invisible jusqu'à un arbre majestueux et sacré.</p>
+
+        <h2>2. Diagramme d'Évolution des Niveaux</h2>
+        <p>Voici la représentation visuelle et structurelle de la progression de la plante générée de manière native et dynamique :</p>
+        
+        <!-- Le diagramme Mermaid est injecté de manière sécurisée sans aucun parsing JSON externe -->
+        <div class="diagram-container">
+            <div class="mermaid">
+                graph TD
+                    subgraph ZONE_SOUTERRAINE ["🌍 ZONE SOUTERRAINE (Niv. 1-3)"]
+                        A[Graine Dormante] -->|Niveau TRUE| B(Racine Ancrée)
+                    end
+
+                    subgraph ZONE_CROISSANCE ["🌱 ZONE DE CROISSANCE (Niv. 5-18)"]
+                        B -->|Émergence| C{Jeune Pousse}
+                        C --> D[Tige Robuste]
+                        D -->|Niveau TRUE| E[Ramification]
+                    end
+
+                    subgraph ZONE_FLORAISON ["🌸 FLORAISON & FRUCTIFICATION (Niv. 22-40)"]
+                        E --> F[Bourgeon Éclos]
+                        F --> G((Fruits Mûrs))
+                    end
+
+                    subgraph PALIER_FINAL ["👑 APOTHÉOSE (Niv. 50)"]
+                        G -->|Métamorphose Ultime| H[ARBRE SACRÉ]
+                    end
+
+                    style A fill:#A8A8A8,stroke:#707070,color:#000
+                    style B fill:#A5D6A7,stroke:#2E7D32,color:#1B5E20
+                    style C fill:#81C784,stroke:#2E7D32,color:#fff
+                    style D fill:#4CAF50,stroke:#1B5E20,color:#fff
+                    style E fill:#1B5E20,stroke:#0B3A0D,color:#fff
+                    style F fill:#F8BBD0,stroke:#C2185B,color:#880E4F
+                    style G fill:#EF5350,stroke:#B71C1C,color:#fff
+                    style H fill:#795548,stroke:#3E2723,color:#fff
+
+                    style ZONE_SOUTERRAINE fill:#f9f9f9,stroke:#e0E0e0,color:#666
+                    style ZONE_CROISSANCE fill:#E8F5E9,stroke:#C8E6C9,color:#2E7D32
+                    style ZONE_FLORAISON fill:#FCE4EC,stroke:#F8BBD0,color:#C2185B
+                    style PALIER_FINAL fill:#EFEBE9,stroke:#D7CCC8,color:#5D4037
+            </div>
+        </div>
+
+        <h2>3. Structure de la Progression (Paliers Clés)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Paliers & Niveaux</th>
+                    <th>Couleurs</th>
+                    <th>Description Botanique & Gameplay</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Paliers Souterrains</strong><br>Niv. 1 à 3</td>
+                    <td>
+                        <span class="color-preview" style="background-color: #A8A8A8;"></span>#A8A8A8<br>
+                        <span class="color-preview" style="background-color: #A5D6A7;"></span>#A5D6A7
+                    </td>
+                    <td>Début sous terre avec la Graine dormante et la Racine ancrée. Les points lumineux sont enfouis dans le sol.</td>
+                </tr>
+                <tr>
+                    <td><strong>Paliers de Croissance</strong><br>Niv. 5 à 18</td>
+                    <td>
+                        <span class="color-preview" style="background-color: #81C784;"></span>#81C784<br>
+                        <span class="color-preview" style="background-color: #1B5E20;"></span>#1B5E20
+                    </td>
+                    <td>La plante sort de terre (Jeune pousse), se renforce (Tige robuste) et se sépare (Ramification).</td>
+                </tr>
+                <tr>
+                    <td><strong>Paliers de Floraison</strong><br>Niv. 22 à 40</td>
+                    <td>
+                        <span class="color-preview" style="background-color: #F8BBD0;"></span>#F8BBD0<br>
+                        <span class="color-preview" style="background-color: #EF5350;"></span>#EF5350
+                    </td>
+                    <td>Explosion de couleurs. Les points se placent sur le Bourgeon éclos et les Fruits mûrs.</td>
+                </tr>
+                <tr>
+                    <td><strong>Palier Final</strong><br>Niveau 50</td>
+                    <td>
+                        <span class="color-preview" style="background-color: #795548;"></span>#795548
+                    </td>
+                    <td>L'apothéose avec l'Arbre sacré, une structure pixel art monumentale.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            Document Généré pour GitHub Pages — Projet Botanique &copy; 2026
+        </footer>
+    </div>
+
+</body>
+</html>
