@@ -12,9 +12,9 @@
             theme: 'base',
             themeVariables: {
                 fontFamily: 'Segoe UI, Arial, sans-serif',
-                primaryColor: '#f8f9fa',
-                lineColor: '#2ecc71',
-                curve: 'linear'
+                primaryColor: '#ffffff',
+                lineColor: '#2E7D32',
+                curve: 'basis'
             }
         });
     </script>
@@ -102,22 +102,19 @@
             text-transform: uppercase;
         }
 
-        h3 {
-            color: var(--dark);
-            margin: 25px 0 15px 0;
-            font-size: 1.2rem;
-        }
-
-        p { margin-bottom: 18px; text-align: justify; color: #444; }
         ul { margin-bottom: 25px; padding-left: 30px; }
         li { margin-bottom: 10px; color: #444; }
 
-        .highlight-box {
-            background: #f8f9fa;
+        .diagram-container {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
-            padding: 25px;
-            margin: 25px 0;
-            border: 1px solid #e9ecef;
+            padding: 30px;
+            margin: 35px 0;
+            overflow-x: auto;
+            max-height: 900px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.03);
         }
 
         .badge {
@@ -131,19 +128,6 @@
         }
         .badge-true { background-color: var(--true-color); }
         .badge-false { background-color: var(--false-color); }
-
-        /* Conteneur spécial avec scrollbar si le diagramme géant déborde */
-        .diagram-container {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 30px;
-            margin: 35px 0;
-            overflow-x: auto;
-            max-height: 800px;
-            overflow-y: auto;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.03);
-        }
 
         table {
             width: 100%;
@@ -193,80 +177,100 @@
     <div class="container">
         <header>
             <h1>Spécifications Techniques de Progression</h1>
-            <div class="subtitle">Intégration Systèmes de Casse-Têtes & Courbe d'Évolution</div>
+            <div class="subtitle">Architecture de la Courbe d'Évolution Botanique</div>
         </header>
 
         <div class="meta-grid">
             <div class="meta-item"><strong>Nom de code</strong>Projet Botanique</div>
-            <div class="meta-item"><strong>Moteur cible</strong>Unity / Godot 2D</div>
-            <div class="meta-item"><strong>Fichier source</strong>Niveaux pour PROJET SANS NOM - Feuille 1.csv</div>
+            <div class="meta-item"><strong>Visualisation</strong>50 Niveaux Synchronisés</div>
+            <div class="meta-item"><strong>Hébergement</strong>GitHub Pages</div>
         </div>
 
-        <h2>1. Architecture Écosystémique du Gameplay</h2>
-        <p>Le jeu lie intimement la résolution logique d'énigmes et la croissance organique de l'arbre-monde. La progression est dictée par la variable booléenne <code>Spécial ?</code> lue en base de données :</p>
+        <h2>1. Concept de l'Arbre de Progression</h2>
+        <p>Le jeu lie intimement la résolution logique d'énigmes et la croissance organique de l'arbre-monde. La progression alterne entre deux types de phases distinctes lues depuis la base de données :</p>
         <ul>
-            <li><strong>Niveaux Spéciaux (TRUE) :</strong> Déclenchent un changement structurel immédiat de l'interface (croissance, déploiement de branches, apparition de nouveaux paliers).</li>
-            <li><strong>Niveaux Standards (FALSE) :</strong> Énigmes intermédiaires. Visuellement, il ne se passe rien sur la structure globale de la plante, mais ils approvisionnent la sève nécessaire pour remplir la jauge et cheminer vers l'évolution suivante.</li>
+            <li><strong>Les Rectangles Colorés (TRUE) :</strong> Marquent les mutations visuelles majeures de la plante (nouvelles feuilles, branches, floraison).</li>
+            <li><strong>Les Points Fins (FALSE) :</strong> Représentent les étapes intermédiaires nécessaires pour acheminer la sève et les nutriments, liés par une ligne d'indication vers leur étiquette de niveau.</li>
         </ul>
 
-        <h2>2. L'Arbre de Progression Linéaire Réel (Les 50 Niveaux)</h2>
-        <p>Ce diagramme dynamique affiche la totalité de la chaîne d'exécution de votre projet. Les cercles pointillés gris représentent les niveaux standards de nutrition (où le sprite ne change pas) ; les blocs rectangulaires colorés représentent les sauts d'évolution graphiques majeurs.</p>
+        <h2>2. Carte d'Évolution Complète des 50 Niveaux</h2>
+        <p>Voici l'arbre de flux complet contenant l'ensemble de vos 50 niveaux regroupés par grandes zones de croissance biologique :</p>
 
         <div class="diagram-container">
             <div class="mermaid">
                 graph TD
-                    %% --- CHAÎNAGE DES 50 NIVEAUX ---
-                    N1["🌱 Niv. 1 : Graine dormante"] --> N2["🌱 Niv. 2 : Graine en éveil"]
-                    N2 --> N3["🌱 Niv. 3 : Racine ancrée"]
-                    N3 --> N4(("💧 Niv. 4 : Nutrition"))
-                    N4 --> N5["🌿 Niv. 5 : Jeune pousse"]
-                    N5 --> N6(("💧 Niv. 6 : Nutrition"))
-                    N6 --> N7["🌿 Niv. 7 : Pousse vigoureuse"]
-                    N7 --> N8(("💧 Niv. 8 : Nutrition"))
-                    N8 --> N9["🌿 Niv. 9 : Feuillage naissant"]
-                    N9 --> N10(("💧 Niv. 10 : Nutrition"))
-                    N10 --> N11(("💧 Niv. 11 : Nutrition"))
-                    N11 --> N12["🎋 Niv. 12 : Tige robuste"]
-                    N12 --> N13(("💧 Niv. 13 : Nutrition"))
-                    N13 --> N14(("💧 Niv. 14 : Nutrition"))
-                    N14 --> N15["🎋 Niv. 15 : Ramification"]
-                    N15 --> N16(("💧 Niv. 16 : Nutrition"))
-                    N16 --> N17(("💧 Niv. 17 : Nutrition"))
-                    N17 --> N18["🎋 Niv. 18 : Structure solide"]
-                    N18 --> N19(("💧 Niv. 19 : Sève"))
-                    N19 --> N20(("💧 Niv. 20 : Sève"))
-                    N20 --> N21(("💧 Niv. 21 : Sève"))
-                    N21 --> N22["🌸 Niv. 22 : Bourgeon éclos"]
-                    N22 --> N23(("💧 Niv. 23 : Sève"))
-                    N23 --> N24(("💧 Niv. 24 : Sève"))
-                    N24 --> N25["🌸 Niv. 25 : Première fleur"]
-                    N25 --> N26(("💧 Niv. 26 : Sève"))
-                    N26 --> N27(("💧 Niv. 27 : Sève"))
-                    N27 --> N28(("💧 Niv. 28 : Sève"))
-                    N28 --> N29(("💧 Niv. 29 : Sève"))
-                    N29 --> N30["🌸 Niv. 30 : Fleur épanouie"]
-                    N30 --> N31(("💧 Niv. 31 : Sève"))
-                    N31 --> N32(("💧 Niv. 32 : Sève"))
-                    N32 --> N33(("💧 Niv. 33 : Sève"))
-                    N33 --> N34(("💧 Niv. 34 : Sève"))
-                    N34 --> N35["🍎 Niv. 35 : Apparition du fruit"]
-                    N35 --> N36(("💧 Niv. 36 : Sève"))
-                    N36 --> N37(("💧 Niv. 37 : Sève"))
-                    N37 --> N38(("💧 Niv. 38 : Sève"))
-                    N38 --> N39(("💧 Niv. 39 : Sève"))
-                    N39 --> N40["🍎 Niv. 40 : Fruits mûrs"]
-                    N40 --> N41(("🌾 Niv. 41 : Énergie"))
-                    N41 --> N42(("🌾 Niv. 42 : Énergie"))
-                    N42 --> N43(("🌾 Niv. 43 : Énergie"))
-                    N43 --> N44(("🌾 Niv. 44 : Énergie"))
-                    N44 --> N45(("🌾 Niv. 45 : Énergie"))
-                    N45 --> N46(("🌾 Niv. 46 : Énergie"))
-                    N46 --> N47(("🌾 Niv. 47 : Énergie"))
-                    N47 --> N48(("🌾 Niv. 48 : Énergie"))
-                    N48 --> N49(("🌾 Niv. 49 : Énergie"))
-                    N49 --> N50["👑 Niv. 50 : ARBRE SACRÉ"]
+                    %% --- ZONE SOUTERRAINE ---
+                    subgraph ZONE_SOUTERRAINE ["🌍 ZONE SOUTERRAINE (Niv. 1-3)"]
+                        N1["🌱 Niv. 1 : Graine dormante"] --> N2["🌱 Niv. 2 : Graine en éveil"]
+                        N2 --> N3["🌱 Niv. 3 : Racine ancrée"]
+                    end
 
-                    %% --- STYLISATION DES APPARENCES REELLES (TRUE) ---
+                    %% --- ZONE DE CROISSANCE ---
+                    subgraph ZONE_CROISSANCE ["🌱 ZONE DE CROISSANCE (Niv. 4-18)"]
+                        N3 --> P4["."] --- T4["Niv. 4 : Sève"]
+                        P4 --> N5["🌿 Niv. 5 : Jeune pousse"]
+                        N5 --> P6["."] --- T6["Niv. 6 : Sève"]
+                        P6 --> N7["🌿 Niv. 7 : Pousse vigoureuse"]
+                        N7 --> P8["."] --- T8["Niv. 8 : Sève"]
+                        P8 --> N9["🌿 Niv. 9 : Feuillage naissant"]
+                        N9 --> P10["."] --- T10["Niv. 10 : Nutrition"]
+                        P10 --> P11["."] --- T11["Niv. 11 : Nutrition"]
+                        P11 --> N12["🎋 Niv. 12 : Tige robuste"]
+                        N12 --> P13["."] --- T13["Niv. 13 : Nutrition"]
+                        P13 --> P14["."] --- T14["Niv. 14 : Nutrition"]
+                        P14 --> N15["🎋 Niv. 15 : Ramification"]
+                        N15 --> P16["."] --- T16["Niv. 16 : Nutrition"]
+                        P16 --> P17["."] --- T17["Niv. 17 : Nutrition"]
+                        P17 --> N18["🎋 Niv. 18 : Structure solide"]
+                    end
+
+                    %% --- ZONE DE FLORAISON ---
+                    subgraph ZONE_FLORAISON ["🌸 FLORAISON & FRUCTIFICATION (Niv. 19-40)"]
+                        N18 --> P19["."] --- T19["Niv. 19 : Sève"]
+                        P19 --> P20["."] --- T20["Niv. 20 : Sève"]
+                        P20 --> P21["."] --- T21["Niv. 21 : Sève"]
+                        P21 --> N22["🌸 Niv. 22 : Bourgeon éclos"]
+                        N22 --> P23["."] --- T23["Niv. 23 : Sève"]
+                        P23 --> P24["."] --- T24["Niv. 24 : Sève"]
+                        P24 --> N25["🌸 Niv. 25 : Première fleur"]
+                        N25 --> P26["."] --- T26["Niv. 26 : Sève"]
+                        P26 --> P27["."] --- T27["Niv. 27 : Sève"]
+                        P27 --> P28["."] --- T28["Niv. 28 : Sève"]
+                        P28 --> P29["."] --- T29["Niv. 29 : Sève"]
+                        P29 --> N30["🌸 Niv. 30 : Fleur épanouie"]
+                        N30 --> P31["."] --- T31["Niv. 31 : Sève"]
+                        P31 --> P32["."] --- T32["Niv. 32 : Sève"]
+                        P32 --> P33["."] --- T33["Niv. 33 : Sève"]
+                        P33 --> P34["."] --- T34["Niv. 34 : Sève"]
+                        P34 --> N35["🍎 Niv. 35 : Apparition du fruit"]
+                        N35 --> P36["."] --- T36["Niv. 36 : Sève"]
+                        P36 --> P37["."] --- T37["Niv. 37 : Sève"]
+                        P37 --> P38["."] --- T38["Niv. 38 : Sève"]
+                        P38 --> P39["."] --- T39["Niv. 39 : Sève"]
+                        P39 --> N40["🍎 Niv. 40 : Fruits mûrs"]
+                    end
+
+                    %% --- PALIER FINAL ---
+                    subgraph PALIER_FINAL ["👑 APOTHÉOSE DE L'ARBRE (Niv. 41-50)"]
+                        N40 --> P41["."] --- T41["Niv. 41"]
+                        P41 --> P42["."] --- T42["Niv. 42"]
+                        P42 --> P43["."] --- T43["Niv. 43"]
+                        P43 --> P44["."] --- T44["Niv. 44"]
+                        P44 --> P45["."] --- T44["Niv. 45"]
+                        P45 --> P46["."] --- T46["Niv. 46"]
+                        P46 --> P47["."] --- T47["Niv. 47"]
+                        P47 --> P48["."] --- T48["Niv. 48"]
+                        P48 --> P49["."] --- T49["Niv. 49"]
+                        P49 --> N50["👑 Niv. 50 : ARBRE SACRÉ"]
+                    end
+
+                    %% --- DESIGN DES ENVELOPPES DE PROGRESSION (SUBGRAPHS) ---
+                    style ZONE_SOUTERRAINE fill:#f5f5f5,stroke:#ccc,color:#666
+                    style ZONE_CROISSANCE fill:#E8F5E9,stroke:#A5D6A7,color:#1B5E20
+                    style ZONE_FLORAISON fill:#FCE4EC,stroke:#F8BBD0,color:#C2185B
+                    style PALIER_FINAL fill:#EFEBE9,stroke:#D7CCC8,color:#5D4037
+
+                    %% --- DESIGN DES NOEUDS D'EVOLUTION (RECTANGLES TRUE) ---
                     style N1 fill:#A8A8A8,stroke:#333,color:#000,stroke-width:2px
                     style N2 fill:#C8E6C9,stroke:#333,color:#1B5E20,stroke-width:2px
                     style N3 fill:#A5D6A7,stroke:#333,color:#1B5E20,stroke-width:2px
@@ -283,13 +287,16 @@
                     style N40 fill:#EF5350,stroke:#333,color:#fff,stroke-width:2px
                     style N50 fill:#795548,stroke:#333,color:#fff,stroke-width:2px
 
-                    %% --- STYLISATION DES PALIERS STANDARDS (FALSE) ---
-                    classDef falseNode fill:#f2f4f4,stroke:#bdc3c7,color:#7f8c8d,stroke-dasharray: 3 3;
-                    class N4,N6,N8,N10,N11,N13,N14,N16,N17,N19,N20,N21,N23,N24,N26,N27,N28,N29,N31,N32,N33,N34,N36,N37,N38,N39,N41,N42,N43,N44,N45,N46,N47,N48,N49 falseNode;
+                    %% --- DESIGN COMPACT DES PETITS POINTS (FALSE) & TRAITS FINAUX ---
+                    classDef pointNode fill:#2E7D32,stroke:none,color:transparent,width:8px,height:8px;
+                    classDef textNode fill:none,stroke:none,color:#555,font-size:11px,font-style:italic;
+                    
+                    class P4,P6,P8,P10,P11,P13,P14,P16,P17,P19,P20,P21,P23,P24,P26,P27,P28,P29,P31,P32,P33,P34,P36,P37,P38,P39,P41,P42,P43,P44,P45,P46,P47,P48,P49 pointNode;
+                    class T4,T6,T8,T10,T11,T13,T14,T16,T17,T19,T20,T21,T23,T24,T26,T27,T28,T29,T31,T32,T33,T34,T36,T37,T38,T39,T41,T42,T43,T44,T45,T46,T47,T48,T49 textNode;
             </div>
         </div>
 
-        <h2>3. Registre Complet des 50 Niveaux du Moteur</h2>
+        <h2>3. Base de Données d'Initialisation</h2>
         <table>
             <thead>
                 <tr>
@@ -300,9 +307,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="row-true"><td>Niv. 1</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Graine dormante (Initialisation du profil)</td><td><span class="color-preview" style="background-color:#A8A8A8;"></span>#A8A8A8</td></tr>
+                <tr class="row-true"><td>Niv. 1</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Graine dormante (Initialisation)</td><td><span class="color-preview" style="background-color:#A8A8A8;"></span>#A8A8A8</td></tr>
                 <tr class="row-true"><td>Niv. 2</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Graine en éveil</td><td><span class="color-preview" style="background-color:#C8E6C9;"></span>#C8E6C9</td></tr>
-                <tr class="row-true"><td>Niv. 3</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Racine ancrée (Palier Souterrain)</td><td><span class="color-preview" style="background-color:#A5D6A7;"></span>#A5D6A7</td></tr>
+                <tr class="row-true"><td>Niv. 3</td><td><span class="badge badge-true">TRUE</span></td><td>🌱 • Racine ancrée</td><td><span class="color-preview" style="background-color:#A5D6A7;"></span>#A5D6A7</td></tr>
                 <tr><td>Niv. 4</td><td><span class="badge badge-false">FALSE</span></td><td>Cycle transitoire de nutrition standard (Sève)</td><td>-</td></tr>
                 <tr class="row-true"><td>Niv. 5</td><td><span class="badge badge-true">TRUE</span></td><td>🌿 • Jeune pousse (Sortie de terre)</td><td><span class="color-preview" style="background-color:#81C784;"></span>#81C784</td></tr>
                 <tr><td>Niv. 6</td><td><span class="badge badge-false">FALSE</span></td><td>Cycle transitoire de nutrition standard (Sève)</td><td>-</td></tr>
