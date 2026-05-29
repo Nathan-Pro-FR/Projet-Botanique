@@ -13,7 +13,7 @@
             themeVariables: {
                 fontFamily: 'Segoe UI, Arial, sans-serif',
                 primaryColor: '#ffffff',
-                lineColor: '#1B5E20', /* Ligne de sève principale bien verte */
+                lineColor: '#FF3B30', /* LIGNE CENTRALE ROUGE DU BROUILLON */
                 curve: 'linear'
             }
         });
@@ -177,142 +177,139 @@
     <div class="container">
         <header>
             <h1>Spécifications Techniques de Progression</h1>
-            <div class="subtitle">Architecture Générale & Courbe d'Évolution</div>
+            <div class="subtitle">Axe Linéaire de Croissance Botanique</div>
         </header>
 
         <div class="meta-grid">
             <div class="meta-item"><strong>Nom de code</strong>Projet Botanique</div>
-            <div class="meta-item"><strong>Visualisation</strong>Ligne de Sève Continue</div>
-            <div class="meta-item"><strong>Fichier Source</strong>GDD & Tableur Synchro</div>
+            <div class="meta-item"><strong>Alignement</strong>Axe Central Strict (Trait Rouge)</div>
+            <div class="meta-item"><strong>Rendu Graphique</strong>Mermaid Arbre Vertical</div>
         </div>
 
-        <h2>1. Concept Fondamental</h2>
-        <p>Le flux de progression est représenté ci-dessous comme dans le moteur de jeu : une ligne de sève principale et verticale traverse les différents biomes. </p>
+        <h2>1. Alignement de la Courbe d'Évolution</h2>
+        <p>Conformément aux maquettes fonctionnelles, la totalité des 50 niveaux est désormais enfilée de manière parfaitement rectiligne sur la ligne rouge centrale de croissance :</p>
         <ul>
-            <li><strong>Les Rectangles Colorés (TRUE) :</strong> Sont les étapes majeures de métamorphose visuelle (changement de sprite Pixel Art).</li>
-            <li><strong>Les Points discrets sur la ligne (FALSE) :</strong> Sont les étapes régulières de nutrition. Un trait horizontal part du point pour afficher son étiquette (ex: <code>Niv. 4</code>), sans dévier ni casser l'axe de croissance de la plante.</li>
+            <li><strong>Les Rectangles (TRUE) :</strong> Sont centrés sur la ligne de sève et affichent les paliers de transformation.</li>
+            <li><strong>Les Points discrets (FALSE) :</strong> Sont placés directement sur la ligne rouge, et leur texte indicatif est déporté de l'autre côté (à l'inverse) pour garder la structure propre.</li>
         </ul>
 
-        <h2>2. Carte interactive du Flux (Les 50 Niveaux selon ton Brouillon)</h2>
+        <h2>2. Carte interactive du Flux (Les 50 Niveaux Alignés)</h2>
         <div class="diagram-container">
             <div class="mermaid">
                 graph TD
-                    %% --- ZONE SOUTERRAINE ---
+                    %% --- BIOMES CONTENEURS ---
                     subgraph ZONE_SOUTERRAINE ["🌍 ZONE SOUTERRAINE (Niv. 1-3)"]
                         N1["🌱 Niv. 1 : Graine dormante"] --> N2["🌱 Niv. 2 : Graine en éveil"]
                         N2 --> N3["🌱 Niv. 3 : Racine ancrée"]
                     end
 
-                    %% --- ZONE DE CROISSANCE ---
                     subgraph ZONE_CROISSANCE ["🌱 ZONE DE CROISSANCE (Niv. 4-18)"]
                         N3 --> P4[" "]
-                        P4 --- T4["Niv. 4 (Nutrition)"]
+                        T4["Niv. 4 (Sève)"] --- P4
                         P4 --> N5["🌿 Niv. 5 : Jeune pousse"]
                         
                         N5 --> P6[" "]
-                        P6 --- T6["Niv. 6 (Nutrition)"]
+                        P6 --- T6["Niv. 6 (Sève)"]
                         P6 --> N7["🌿 Niv. 7 : Pousse vigoureuse"]
                         
                         N7 --> P8[" "]
-                        P8 --- T8["Niv. 8 (Nutrition)"]
+                        T8["Niv. 8 (Sève)"] --- P8
                         P8 --> N9["🌿 Niv. 9 : Feuillage naissant"]
                         
                         N9 --> P10[" "]
-                        P10 --- T10["Niv. 10 (Nutrition)"]
+                        T10["Niv. 10"] --- P10
                         P10 --> P11[" "]
-                        P11 --- T11["Niv. 11 (Nutrition)"]
+                        P11 --- T11["Niv. 11"]
                         P11 --> N12["🎋 Niv. 12 : Tige robuste"]
                         
                         N12 --> P13[" "]
-                        P13 --- T13["Niv. 13 (Nutrition)"]
+                        T13["Niv. 13"] --- P13
                         P13 --> P14[" "]
-                        P14 --- T14["Niv. 14 (Nutrition)"]
+                        P14 --- T14["Niv. 14"]
                         P14 --> N15["🎋 Niv. 15 : Ramification"]
                         
                         N15 --> P16[" "]
-                        P16 --- T16["Niv. 16 (Nutrition)"]
+                        T16["Niv. 16"] --- P16
                         P16 --> P17[" "]
-                        P17 --- T17["Niv. 17 (Nutrition)"]
+                        P17 --- T17["Niv. 17"]
                         P17 --> N18["🎋 Niv. 18 : Structure solide"]
                     end
 
-                    %% --- ZONE DE FLORAISON ---
                     subgraph ZONE_FLORAISON ["🌸 FLORAISON & FRUCTIFICATION (Niv. 19-40)"]
                         N18 --> P19[" "]
-                        P19 --- T19["Niv. 19"]
+                        T19["Niv. 19"] --- P19
                         P19 --> P20[" "]
                         P20 --- T20["Niv. 20"]
                         P20 --> P21[" "]
-                        P21 --- T21["Niv. 21"]
+                        T21["Niv. 21"] --- P21
                         P21 --> N22["🌸 Niv. 22 : Bourgeon éclos"]
                         
                         N22 --> P23[" "]
                         P23 --- T23["Niv. 23"]
                         P23 --> P24[" "]
-                        P24 --- T24["Niv. 24"]
+                        T24["Niv. 24"] --- P24
                         P24 --> N25["🌸 Niv. 25 : Première fleur"]
                         
                         N25 --> P26[" "]
                         P26 --- T26["Niv. 26"]
                         P26 --> P27[" "]
-                        P27 --- T27["Niv. 27"]
+                        T27["Niv. 27"] --- P27
                         P27 --> P28[" "]
                         P28 --- T28["Niv. 28"]
                         P28 --> P29[" "]
-                        P29 --- T29["Niv. 29"]
+                        T29["Niv. 29"] --- P29
                         P29 --> N30["🌸 Niv. 30 : Fleur épanouie"]
                         
                         N30 --> P31[" "]
                         P31 --- T31["Niv. 31"]
                         P31 --> P32[" "]
-                        P32 --- T32["Niv. 32"]
+                        T32["Niv. 32"] --- P32
                         P32 --> P33[" "]
                         P33 --- T33["Niv. 33"]
                         P33 --> P34[" "]
-                        P34 --- T34["Niv. 34"]
+                        T34["Niv. 34"] --- P34
                         P34 --> N35["🍎 Niv. 35 : Apparition du fruit"]
                         
                         N35 --> P36[" "]
                         P36 --- T36["Niv. 36"]
                         P36 --> P37[" "]
-                        P37 --- T37["Niv. 37"]
+                        T37["Niv. 37"] --- P37
                         P37 --> P38[" "]
                         P38 --- T38["Niv. 38"]
                         P38 --> P39[" "]
-                        P39 --- T39["Niv. 39"]
-                        P40 --> N40["🍎 Niv. 40 : Fruits mûrs"]
+                        T39["Niv. 39"] --- P39
+                        P39 --> N40["🍎 Niv. 40 : Fruits mûrs"]
                     end
 
-                    %% --- PALIER FINAL ---
                     subgraph PALIER_FINAL ["👑 APOTHÉOSE DE L'ARBRE (Niv. 41-50)"]
                         N40 --> P41[" "]
                         P41 --- T41["Niv. 41"]
                         P41 --> P42[" "]
-                        P42 --- T42["Niv. 42"]
+                        T42["Niv. 42"] --- P42
                         P42 --> P43[" "]
                         P43 --- T43["Niv. 43"]
                         P43 --> P44[" "]
-                        P44 --- T44["Niv. 44"]
+                        T44["Niv. 44"] --- P44
                         P44 --> P45[" "]
                         P45 --- T45["Niv. 45"]
                         P45 --> P46[" "]
-                        P46 --- T46["Niv. 46"]
+                        T46["Niv. 46"] --- P46
                         P46 --> P47[" "]
                         P47 --- T47["Niv. 47"]
                         P47 --> P48[" "]
-                        P48 --- T48["Niv. 48"]
+                        T48["Niv. 48"] --- P48
                         P48 --> P49[" "]
                         P49 --- T49["Niv. 49"]
                         P49 --> N50["👑 Niv. 50 : ARBRE SACRÉ"]
                     end
 
-                    %% --- RECTANGLES DE COULEURS POUR LES BIOMES (SUBGRAPHS) ---
-                    style ZONE_SOUTERRAINE fill:#f9f9f9,stroke:#ccc,color:#666
-                    style ZONE_CROISSANCE fill:#E8F5E9,stroke:#A5D6A7,color:#1B5E20
-                    style ZONE_FLORAISON fill:#FCE4EC,stroke:#F8BBD0,color:#C2185B
-                    style PALIER_FINAL fill:#EFEBE9,stroke:#D7CCC8,color:#5D4037
+                    %% --- DESIGN DES ENVELOPPES DE BIOMES ---
+                    style ZONE_SOUTERRAINE fill:#fdfdfd,stroke:#bbb,color:#444
+                    style ZONE_CROISSANCE fill:#F1F8E9,stroke:#C5E1A5,color:#33691E
+                    style ZONE_FLORAISON fill:#FCE4EC,stroke:#F48FB1,color:#880E4F
+                    style PALIER_FINAL fill:#efebe9,stroke:#bcaaa4,color:#4e342e
 
-                    %% --- RECTANGLES DE TEXTE TRUE ---
+                    %% --- RECTANGLES DE TEXTE TRUE (EVOLUTIONS) ---
                     style N1 fill:#A8A8A8,stroke:#333,color:#000,stroke-width:2px
                     style N2 fill:#C8E6C9,stroke:#333,color:#1B5E20,stroke-width:2px
                     style N3 fill:#A5D6A7,stroke:#333,color:#1B5E20,stroke-width:2px
@@ -329,12 +326,12 @@
                     style N40 fill:#EF5350,stroke:#333,color:#fff,stroke-width:2px
                     style N50 fill:#795548,stroke:#333,color:#fff,stroke-width:2px
 
-                    %% --- PETITS POINTS DISCRETS SUR LA LIGNE ---
-                    classDef pointNode fill:#1B5E20,stroke:#81C784,width:10px,height:10px,border-radius:50%;
+                    %% --- STYLE DES PETITS POINTS SUR LA LIGNE ROUGE ---
+                    classDef pointNode fill:#FF3B30,stroke:#FF3B30,width:8px,height:8px,border-radius:50%;
                     class P4,P6,P8,P10,P11,P13,P14,P16,P17,P19,P20,P21,P23,P24,P26,P27,P28,P29,P31,P32,P33,P34,P36,P37,P38,P39,P41,P42,P43,P44,P45,P46,P47,P48,P49 pointNode;
 
-                    %% --- TEXTE DES INDICATION HORS LIGNE ---
-                    classDef textNode fill:none,stroke:none,color:#555,font-size:12px,font-weight:bold;
+                    %% --- STYLE DES INDICATIONS TEXTUELLES EXTERNES ---
+                    classDef textNode fill:none,stroke:none,color:#666,font-size:12px,font-weight:600;
                     class T4,T6,T8,T10,T11,T13,T14,T16,T17,T19,T20,T21,T23,T24,T26,T27,T28,T29,T31,T32,T33,T34,T36,T37,T38,T39,T41,T42,T43,T44,T45,T46,T47,T48,T49 textNode;
             </div>
         </div>
